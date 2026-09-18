@@ -1,0 +1,89 @@
+
+## Bind Mount
+
+sudo mkdir /webdata
+sudo chown $USER:$USER /webdata
+nano index.html
+<h1> This site is under construction!!</h1>
+ctrl+O 
+Enter
+ctrl +X
+
+ls
+
+docker pull httpd
+docker images
+docker run -d --name web3 -p 9000:80 -v "$PWD":/usr/local/apache2/htdocs/ httpd
+docker ps
+http://localhost:9000
+
+cd /webdata
+nano index.html
+<h1>We are building!Coming Soon!</h1>
+ctrl+O 
+Enter
+ctrl +X
+Go to browser>>> Refresh
+
+
+nano pdai.html
+<h1> Congrautlation!Professional Diploma in AI </h1>
+ctrl+O 
+Enter
+ctrl +X
+
+ls
+
+Go to Browser >>localhost:9000
+http://localhost:9000/pdai.html
+
+rm pdai.html
+sudo rm pdai.html
+ls
+
+http://localhost:9000/pdai.html
+
+Refresh>>> 404 Not Found
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

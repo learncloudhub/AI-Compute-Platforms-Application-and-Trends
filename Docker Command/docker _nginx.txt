@@ -1,0 +1,33 @@
+docker pull nginx
+docker run -d --name c1 -p 4500:80 nginx
+docker ps
+	Go to ubuntu browser>> http://localhost:4500
+cd~
+nano index.html
+	write>>> <h1> Welcome to Docker nginx!</h1>
+
+docker cp index.html c1:/usr/share/nginx/html/index.html
+	Go to http://localhost:4500 >>>> refresh
+
+
+## Bind mount with nginx
+
+cd~
+mkdir exam-data
+cd exam-data
+nano index.html<h1> Nginx Bind Mount Assignment </h1>
+<p> This page is shared by multiple containers.</p>
+docker run -d --name ng1 -p 7500:80 -v "$(pwd):/usr/share/nginx/html" nginx
+
+docker run -d --name ng2 -p 7600:80 -v "$(pwd):/usr/share/nginx/html" nginx
+
+http://localhost:7500
+http://localhost:7600
+
+nano index.html
+	edit>>> data>> saved
+Go to http://localhost:7500
+Go to http://localhost:7600
+docker stop ng1 ng2
+docker rm ng1 ng2
+docker ps -a

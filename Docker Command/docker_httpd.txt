@@ -1,0 +1,32 @@
+hub.docker.com
+docker pull httpd
+docker images
+docker run --name web1 httpd
+ctrl+c
+docker ps -a
+docker stop web1
+docker rm web1
+docker ps -a
+docker ps
+docker run --name web1 -d httpd
+docker stop web1
+docker rm web1
+docker run -d --name web1 -p 8000:80 httpd
+docker ps
+docker inspect web1
+http://localhost:8000
+it work!
+nano index.html
+<h1> Welcome to the containers world !!</h1>
+ctrl+O >>> save
+enter
+ctrl+x >>> exit
+
+docker cp index.html web1:/usr/local/apache2/htdocs/index.html
+Go to browser>>> local host>> refresh
+
+
+
+
+
+

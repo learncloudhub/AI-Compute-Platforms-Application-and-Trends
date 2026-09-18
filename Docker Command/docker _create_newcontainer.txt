@@ -1,0 +1,23 @@
+docker images
+docker pull ubuntu
+docker run --name ub1 -ti ubuntu
+apt update -y
+apt install python3 -y
+asia >>5
+timezone>> 85
+python3
+print("Hello,Welcome to Docker")
+docker ps -a
+docker commit ub1 my-python
+docker images
+docker run --name py1 -it my-python bash
+python3 --version
+python3
+print("Hello,Welcome  to PDAI")
+ctrl+D
+exit
+docker ps -a (check container)
+dockr images (check images)
+docker run --rm --name temp1 -it my-python bash
+exit
+docker ps -a

@@ -1,0 +1,124 @@
+cd ..
+cd~
+mkdir py1
+cd py1
+ls
+nano main.py
+#!/usr/bin/env python3
+print("Hello Greeting ----from python3")
+ctrl+O Enter ctrl X
+chmod +x main.py
+./main.py(OR) python main.py
+ls
+nano Dockerfile
+FROM ubuntu
+RUN apt-get update && apt-get install -y python3 && rm -rf /var/lib/apt/lists/*
+RUN mkdir -p /app
+COPY main.py /app/main.py
+CMD ["python3","/app/main.py"]
+
+docker build -t py-app1:1.0 .
+docker run --rm py-app1:1.0
+go to browser on ubuntu
+hub.docker.com
+create repository  >>>>> py-app1
+
+docker images
+docker tag py-app1:1.0 username/py-app1:1.0
+docker login
+after login successful, type below command
+docker push username/py-app1:1.0
+
+
+
+
+cd~
+mkdir flask1
+cd flask1
+nano app.py
+
+from flask import Flask
+app = Flask(__name__)
+@app.route("/")
+def home():
+	return "Hello From Flask running inside docker!"
+if__name__ == "__main__":
+	app.run(host="0.0.0.0", port=5000)
+
+nano Dockerfile
+
+FROM ubuntu 
+RUN apt-get update && apt-get install -y python3 python3-flask
+&& rm -rf /var/lib/apt/lists/*
+RUN mkdir -p /myapp
+COPY app.py /myapp/app.py
+CMD ["python3", "/myapp/app.py"]
+
+docker build -t flask-app1:1.0 .
+docker images
+
+docker run --name fl1 -p 5000:5000 -d flask-app1:1.0
+docker ps
+docker logs fl1
+http://localhost:5000
+
+docker logs fl1
+nano app.py
+
+from flask import Flask
+app = Flask(__name__)
+
+@app.route("/")
+
+def home():
+	return "Hello From Flask running inside docker!"
+@app.route("/hello/pdai")
+def hello_pdai():
+	return "Hello PDAI!,Welcome to Professional Diploma in AI!"
+if__name__ == "__main__":
+	app.run(host="0.0.0.0", port=5000)
+
+docker stop fl1
+docker rm fl1
+
+docker build -t flask-app1:2.0 .
+docker run --name fl1 -p 5000:5000 -d flask-app1:2.0
+
+Goto browser http://localhost:5000/hello/pdai
+
+nano app.py>>> only change insted of 5000, 6500
+
+docker stop fl1
+docker rm fl1
+docker build -t flask-app1:3.0 .
+docker run --name fl1 -p 5000:6500 -d flask-app1:3.0
+docker logs fl1
+local host:5000
+
+
+docker stop fl1
+docker rm fl1
+docker build -t flask-app1:3.0 .
+docker run --name fl1 -p 6500:6500 -d flask-app1:3.0
+docker logs fl1
+local host:6500
+docker ps
+docker logs fl1
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

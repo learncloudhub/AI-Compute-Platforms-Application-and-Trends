@@ -1,0 +1,35 @@
+sudo apt update -y
+sudo apt install docker.io
+sudo docker ps
+sudo systemctl status docker
+sudo systemctl enable docker
+sudo systemctl status docker
+sudo docker ps
+sudo usermod -aG docker may
+sudo reboot
+docker ps
+docker images
+docker pull ubuntu
+docker images
+docker ps -a
+docker images
+docker run ubuntu
+docker run --name u1 -it ubuntu bash
+ls
+mkdir pdai
+ls
+docker ps -a
+docker run --name u2 -it ubuntu bash
+docker ps -a
+docker start u1
+docker attach u1
+docker start u1
+docker exec -it u1 bash
+docker start u1
+docker stop u1
+docker ps
+docker ps -a
+docker rm u1 u2
+docker ps -a
+docker images
+

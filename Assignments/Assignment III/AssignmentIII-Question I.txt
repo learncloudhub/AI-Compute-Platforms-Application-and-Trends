@@ -1,0 +1,12 @@
+
+Assignment III
+
+Question I
+
+Create a simple HTML page containing student name,course name,a short Docker message.
+Deploy the page using Nginx on host port 7700.
+Use a bind mount instead of docker cp.
+Modify the HTML file on the host and demonstrate that the browser
+updates after refresh
+submit screenshots of docker ps, the terminal command, and 
+the final browser output.

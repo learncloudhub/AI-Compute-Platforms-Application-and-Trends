@@ -1,0 +1,58 @@
+sudo systemctl status docker
+nano shell1.sh
+#!/bin/bash
+echo "Hello World...from Container!!!"
+ls -l shell1.sh
+chmod +x shell1.sh
+./shell1.sh
+docker run --name u1 -it ubuntu bash
+mkdir /script
+exit
+docker ps -a
+docker cp shell1.sh u1:/script/shell1.sh
+docker start u1
+docker exec -it u1 bash
+ls /script
+/script/shell1.sh
+
+
+docker stop u1
+docker commit u1 shell1:v1
+docker images
+docker rm u1
+docker ps -a
+docker run --rm shell1:v1 /script/shell1.sh
+
+
+cd ..
+mkdir docker-shell
+cd docker-shell
+nano shell2.sh
+#!/bin/bash
+echo "Hello World...from Docker File!!!"
+ctrl+O Enter Ctrl+X
+chmod +x shell2.sh
+nano Dockerfile
+	FROM ubuntu
+	RUN mkdir -p /script
+	COPY shell2.sh /script/shell2.sh
+	RUN chmod +x /script/shell2.sh
+	CMD ["/bin/bash", "/script/shell2.sh"]
+ctrl+o enter ctrl+x
+ls
+docker build -t myapp1:1.0 .
+docker images
+docker run --rm myapp1:1.0
+docker ps -a
+nano shell2.sh
+	#!/bin/bash
+	echo "Hello World...from Docker File:Version2!!!"
+ctrl+O Enter Ctrl+X
+docker buld -t myapp1:2.0 .
+docker images
+docker run --rm myapp1:2.0
+docker ps-a
+docker rm 
+docker ps -a
+hub.docker.com
+create account
