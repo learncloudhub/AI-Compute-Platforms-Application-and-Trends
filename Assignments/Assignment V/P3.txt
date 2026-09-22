@@ -1,0 +1,78 @@
+kubectl get deployments
+ပြီးရင်—
+kubectl get pods
+kubectl get services
+minikube service demo1 --url
+
+cd ~/kube-demo1
+pwd
+nano index.html
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Kubernetes Demo</title>
+</head>
+<body>
+    <h1>Hello from Kubernetes!</h1>
+    <h2>Version 2</h2>
+</body>
+</html>
+Save:
+Ctrl + O
+Enter
+Ctrl + X
+စစ်ပါ။
+
+cat index.html
+
+
+
+docker build -t kube-demo1:v2 .
+docker images
+
+docker tag kube-demo1:v2 mayelsa/kube-demo1:v2
+
+docker push mayelsa/kube-demo1:v2
+kubectl describe deployment demo1
+kubectl get deployment demo1 -o jsonpath='{.spec.template.spec.containers[*].name}'
+
+	Container name က kube-demo1 လို့ထွက်တယ်ဆိုရင်—
+	Container name kube-demo1 လို့ရရင်—
+kubectl set image deployment/demo1 kube-demo1=mayelsa/kube-demo1:v2
+		အောင်မြင်ရင်—
+		deployment.apps/demo1 image updated လိုထွက်ပါမယ်။
+
+
+kubectl rollout status deployment/demo1
+	အောင်မြင်ရင် နောက်ဆုံးမှာ—
+		deployment "demo1" successfully rolled out
+	လိုရပါမယ်။
+
+
+kubectl get pods
+
+kubectl describe deployment demo1
+
+minikube service demo1 --url
+	Firefox မှာဖွင့်/refresh လုပ်ပါ။
+	အခု—
+	Hello from Kubernetes!
+	Version 2 ဖြစ်သွားရပါမယ်။
+
+	Browser မှာ Version 2 ဖြစ်တာစစ်ပြီးမှ—
+kubectl rollout history deployment/demo1
+		REVISION
+			1
+			2	လို revision history တွေ့နိုင်ပါတယ်။
+
+
+kubectl rollout undo deployment/demo1
+
+kubectl rollout status deployment/demo1
+kubectl get pods
+kubectl describe deployment demo1
+Rollback မှန်ကန်စွာဖြစ်ရင် previous revision က image— mayelsa/kube-demo1:v1 ကို ပြန်တွေ့သင့်ပါတယ်။
+
+
+minikube service demo1 –url
+Firefox မှာ refresh လုပ်ပါ။ Hello from Kubernetes! Version 1 ပြန်ပေါ်လာရင် Rollback အောင်မြင်ပြီ။
